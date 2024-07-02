@@ -1,5 +1,4 @@
 # Tomato_Clock
-An useful app.
 1.团队说明
 
 团队名称：	绳之以组
