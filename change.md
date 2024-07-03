@@ -8,7 +8,7 @@ v1版本：
 
 v2版本：
 
-在这个版本钟，我对主界面，皮肤设置，任务，任务设置，皮肤五个界面做了更改和添加：
+在这个版本中，我对主界面，皮肤设置，任务，任务设置，皮肤五个界面做了更改和添加：
 
 主界面：![main](https://github.com/Hurricane2333/Tomato_Clock/blob/main/picture1/main-v2.png)
 
