@@ -1,9 +1,0 @@
-F:/Qt_Project/TC_main/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/TC_main.dir
-F:/Qt_Project/TC_main/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
-F:/Qt_Project/TC_main/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
-F:/Qt_Project/TC_main/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
-F:/Qt_Project/TC_main/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/install.dir
-F:/Qt_Project/TC_main/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
-F:/Qt_Project/TC_main/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
-F:/Qt_Project/TC_main/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/TC_main_autogen_timestamp_deps.dir
-F:/Qt_Project/TC_main/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/TC_main_autogen.dir
