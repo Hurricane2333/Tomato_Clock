@@ -86,7 +86,7 @@ void MainWindow::updateTime()
     if(time.minute() == 0  && time.second() == 0 && tomato_num==1)
     {
         //休息完毕
-        giftWindow->money+=800;//第一阶段送5发
+        //giftWindow->money+=800;//第一阶段送5发
         tomato_num = 0;
         InitTime();
         timer->stop();
@@ -109,10 +109,10 @@ void MainWindow::on_startBtn_clicked()
 {
     if(state==0)
     {
-    disconnect(timer, SIGNAL(timeout()), this, SLOT(updateTime()));
-    timer->start();
-    connect(timer,SIGNAL(timeout()),this,SLOT(updateTime()));
-    state=1;
+        disconnect(timer, SIGNAL(timeout()), this, SLOT(updateTime()));
+        timer->start();
+        connect(timer,SIGNAL(timeout()),this,SLOT(updateTime()));
+        state=1;
     }
 }
 
