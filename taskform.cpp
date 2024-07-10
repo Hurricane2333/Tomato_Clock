@@ -13,7 +13,7 @@ taskForm::~taskForm()
     delete ui;
 }
 
-void taskForm::taskInfo(int id,QString name,int grade,int studyTime,int breakTime)
+void taskForm::taskInfo(int id,QString name,int grade,int studyTime,int breakTime,int turn)
 {
     //ui->idlabel->setText(QString::number(id));
     this->id=id;
@@ -21,6 +21,7 @@ void taskForm::taskInfo(int id,QString name,int grade,int studyTime,int breakTim
     ui->gradelabel->setText(QString::number(grade));
     ui->studylabel->setText(QString::number(studyTime));
     ui->breaklabel->setText(QString::number(breakTime));
+    ui->turnlabel->setText(QString::number(turn));
 }
 
 void taskForm::on_deleteBtn_clicked()

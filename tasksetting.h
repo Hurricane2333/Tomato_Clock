@@ -19,7 +19,6 @@ class tasksetting : public QWidget
 public:
     explicit tasksetting(QWidget *parent = nullptr);
     ~tasksetting();
-    //QSqlDatabase db;   //
 
 signals:
     void taskAdded();

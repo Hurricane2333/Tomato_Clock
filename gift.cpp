@@ -61,11 +61,10 @@ void gift::paintEvent(QPaintEvent *event)
 int gift::isLucky( )
 {
     money-=160;
-    updateMoney(money);
-
     int luckyNum=QRandomGenerator::global()->bounded(1,10000);
     smallGift++;
     bigGift++;
+    updateMoney(money);
     int num=60;
     if(bigGift>=64)
     {
@@ -260,6 +259,7 @@ void gift::on_giftButton_clicked()//奖励记录
 void gift::updateMoney(int nowMoney)
 {
     //修改数据库中的money与ui界面
+    qDebug()<<nowMoney;
     QSqlQuery query;
     QString sqlUpdate =QString("update user set money=%1,bigGift=%2,smallGift=%3 where id = %4;")
                             .arg(nowMoney)
@@ -273,7 +273,6 @@ void gift::updateMoney(int nowMoney)
 
     QString str = QString::number(nowMoney);
     ui->lineEdit->setText(str);
-    //money=nowMoney;
 }
 
 

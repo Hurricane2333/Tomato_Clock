@@ -157,6 +157,29 @@
     <string>保存</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>40</y>
+     <width>40</width>
+     <height>12</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>轮次</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="turnLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>80</y>
+     <width>51</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

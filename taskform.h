@@ -20,7 +20,7 @@ public:
     explicit taskForm(QWidget *parent = nullptr);
     ~taskForm();
 
-    void taskInfo(int id,QString name,int grade,int studyTime,int breakTime);
+    void taskInfo(int id,QString name,int grade,int studyTime,int breakTime,int turn);
 
 signals:
     void deleted();

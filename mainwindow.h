@@ -30,6 +30,12 @@ private slots:
 
     void InitTime();
 
+    void nextTask();
+
+    void addMoney(int tomato);//任务奖励
+
+    void subMoney(int tomato);//扣钱
+
     void on_rewardBtn_clicked();
 
     void on_startBtn_clicked();
@@ -49,9 +55,15 @@ private:
     int tomato_num=0; //番茄计数，轮流工作休息
     int studyTime=0;//学习时间
     int breakTime=0;//休息时间
+    int turn=0;//任务轮次
+
+    int startNum=0;//开始次数
+    int pauseNum=0;//暂停次数
+    int stopNum=0;//提前结束次数
+
     QTimer *timer;
     QTime time;
-    QSqlDatabase basedb; // 声明数据库连接对象
+    QSqlDatabase basedb; // 数据库连接对象
 
 };
 #endif // MAINWINDOW_H

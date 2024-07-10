@@ -31,7 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
                                      "name varchar(20),"
                                      "grade int,"
                                      "studyTime int,"
-                                     "breakTime int);");
+                                     "breakTime int,"
+                                     "turn int);");
     if(!query.exec(taskTable))
     {
         qDebug()<<"Error falied to open task"<<basedb.lastError();
@@ -170,18 +171,19 @@ void MainWindow::InitTime()
     {
         studyTime=query.value("studyTime").toInt();
         breakTime=query.value("breakTime").toInt();
+        turn=query.value("turn").toInt();
 
         QFont font;
         font.setFamily("Arial"); // 设置字体家族为Arial
         font.setPointSize(14); // 设置字体大小为14
         font.setBold(true); // 设置字体加粗
         ui->nowEdit->setFont(font);
-        ui->nowEdit->setText("当前任务："+query.value("name").toString());
+        ui->nowEdit->setText("当前任务："+query.value("name").toString()+"\n剩余轮次："+QString::number(turn));
         //显示下一项任务
         if(query.next())
         {
             ui->nextEdit->setFont(font);
-            ui->nextEdit->setText("下一项任务："+query.value("name").toString());
+            ui->nextEdit->setText("下一项任务："+query.value("name").toString()+"\n剩余轮次："+query.value("turn").toString());
         }
         else
         {
@@ -191,12 +193,13 @@ void MainWindow::InitTime()
     else
     {
         // 数据库中不存在task记录，插入一条新记录
-        QString sqlIn = QString("insert into task (name, grade, studyTime, breakTime) "
-                                "values ('%1', %2, %3, %4);")
+        QString sqlIn = QString("insert into task (name, grade, studyTime, breakTime,turn) "
+                                "values ('%1', %2, %3, %4, %5);")
                             .arg("默认任务")
                             .arg(1)
                             .arg(25)
-                            .arg(5);
+                            .arg(5)
+                            .arg(1);
         if (!query.exec(sqlIn))
         {
             qDebug() << "error in inserting original task";
@@ -205,7 +208,7 @@ void MainWindow::InitTime()
         InitTime();
     }
 
-
+    //设置计时器格式
     time.setHMS(0,studyTime,0);
     ui->Timer->display(time.toString("mm:ss"));
     ui->Timer->setStyleSheet ("color:red");
@@ -215,10 +218,15 @@ void MainWindow::updateTime()
 {
     time = time.addSecs(-1);
     ui->Timer->display(time.toString("mm:ss"));
-    if(time.minute() == 0  && time.second() == 0 && tomato_num==1)
+    //学习时间与休息时间轮流进行
+    if(time.minute() == 0  && time.second() == 0 && tomato_num==1&&turn>0)
     {
-        //休息完毕
-        //giftWindow->money+=800;//第一阶段送5发
+        //进入学习
+        turn--;
+        if(turn==0)//任务结束
+        {
+            nextTask();
+        }
         tomato_num = 0;
         InitTime();
         state = 0;
@@ -233,11 +241,46 @@ void MainWindow::updateTime()
     }
 }
 
+void MainWindow::nextTask()
+{
+    //进行下一项任务
+    timer->stop();
+    QSqlQuery query;
+    QString sqlSelect = QString("select * from task;");//查询
+    if(query.exec(sqlSelect)&&query.next())
+    {
+        //删除第一条任务
+        int id=query.value("id").toInt();
+        QString sqlDe=QString("delete from task where id=%1;").arg(id);
+        if(!query.exec(sqlDe))
+        {
+            qDebug()<<"delete error";
+        }
+    }
+    InitTime();
+    state=0;
+}
+
+void MainWindow::addMoney(int tomato)//任务奖励
+{
+    giftWindow->money+=tomato;
+    giftWindow->updateMoney(giftWindow->money);
+}
+
+
+void MainWindow::subMoney(int tomato)//扣钱
+{
+    giftWindow->money-=tomato;
+    giftWindow->updateMoney(giftWindow->money);
+}
+
 
 void MainWindow::on_startBtn_clicked()
 {
+    //开始计时
     if(state==0)
     {
+        addMoney(160);
         disconnect(timer, SIGNAL(timeout()), this, SLOT(updateTime()));
         timer->start();
         connect(timer,SIGNAL(timeout()),this,SLOT(updateTime()));
@@ -254,10 +297,11 @@ void MainWindow::on_pauseBtn_clicked()
 
 
 void MainWindow::on_stopBtn_clicked()
-{    
-    timer->stop();
-    InitTime();
-    state=0;
+{
+    nextTask();
+    //进行番茄历史记录和原石操作
+
+
 }
 
 

@@ -5,7 +5,6 @@ manage::manage( QWidget *parent) : QWidget(parent)
     , ui(new Ui::manage)
 {
     ui->setupUi(this);
-    //taskWindow->db=db;
     connect(taskWindow, &tasksetting::taskAdded, this, &manage::updateWindow);
 }
 
@@ -50,9 +49,11 @@ void manage::updateWindow()
         int grade=query.value("grade").toInt();
         int studyTime=query.value("studyTime").toInt();
         int breakTime=query.value("breakTime").toInt();
+        int turn=query.value("turn").toInt();
 
         taskForm*task=new taskForm();
-        task->taskInfo(id,name,grade,studyTime,breakTime);//                           //                  //
+        connect(task,&taskForm::deleted,this,&manage::updateWindow);                ////
+        task->taskInfo(id,name,grade,studyTime,breakTime,turn);//
         QListWidgetItem* item=new QListWidgetItem;
         item->setSizeHint(QSize(735,56));
         ui->listWidget->addItem(item);
