@@ -27,7 +27,7 @@ public:
 
 signals:
     void display(QPixmap pic);
-    void locked(QTime time,int num,QString now,QString next);
+    void locked(QTime time,int num,QString now,QString next,int nowNum,int nextNum);
 
 private slots:
 
@@ -66,6 +66,8 @@ private:
 
     QString nowWork;
     QString nextWork;
+    int nowNum;
+    int nextNum;
     lockScreen *w;
     bool isLock=false;
 

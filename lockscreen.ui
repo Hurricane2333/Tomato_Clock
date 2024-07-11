@@ -73,26 +73,26 @@
     <enum>QFrame::Plain</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="currentWorkLbl">
+  <widget class="QLabel" name="nowLbl">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>60</y>
-     <width>111</width>
-     <height>51</height>
+     <x>58</x>
+     <y>48</y>
+     <width>101</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="nextWorkLbl">
+  <widget class="QLabel" name="nextLbl">
    <property name="geometry">
     <rect>
-     <x>58</x>
-     <y>140</y>
+     <x>48</x>
+     <y>180</y>
      <width>101</width>
-     <height>101</height>
+     <height>91</height>
     </rect>
    </property>
    <property name="text">

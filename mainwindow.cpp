@@ -183,18 +183,21 @@ void MainWindow::InitTime()
         font.setBold(true); // 设置字体加粗
 
         nowWork = query.value("name").toString();
+        nowNum = turn;
         ui->nowEdit->setFont(font);
-        ui->nowEdit->setText("当前任务："+nowWork+"\n剩余轮次："+QString::number(turn));
+        ui->nowEdit->setText("当前任务："+nowWork+"\n剩余轮次："+QString::number(nowNum));
         //显示下一项任务
         if(query.next())
         {
             nextWork = query.value("name").toString();
+            nextNum = query.value("turn").toInt();
             ui->nextEdit->setFont(font);
-            ui->nextEdit->setText("下一项任务："+nextWork+"\n剩余轮次："+query.value("turn").toString());
+            ui->nextEdit->setText("下一项任务："+nextWork+"\n剩余轮次："+QString::number(nextNum));
         }
         else
         {
             nextWork = "";
+            nextNum = 0;
             ui->nextEdit->clear();
         }
     }
@@ -221,7 +224,7 @@ void MainWindow::InitTime()
     ui->Timer->display(time.toString("mm:ss"));
     ui->Timer->setStyleSheet ("color:red");
 
-    emit locked(time,0,nowWork,nextWork);
+    emit locked(time,0,nowWork,nextWork,nowNum,nextNum);
 
 }
 
@@ -229,7 +232,8 @@ void MainWindow::updateTime()
 {
     time = time.addSecs(-1);
     ui->Timer->display(time.toString("mm:ss"));
-    emit locked(time,2,nowWork,nextWork);
+
+    emit locked(time,2,nowWork,nextWork,nowNum,nextNum);
     //学习时间与休息时间轮流进行
     if(time.minute() == 0  && time.second() == 0 && tomato_num==1&&turn>0)
     {
@@ -263,9 +267,13 @@ void MainWindow::updateTime()
         //进入休息
         tomato_num = 1;
         time.setHMS(0,breakTime,0);
-        emit locked(time,1,nowWork,nextWork);
+
         ui->Timer->setStyleSheet ("color:green");
         state=0;
+
+        //锁定界面不应该在休息时出现
+        //emit locked(time,1,nowWork,nextWork,nowNum,nextNum);
+        w->close();
     }
 }
 
@@ -321,7 +329,7 @@ void MainWindow::on_startBtn_clicked()
         QPixmap backPic(currentBackground);
         w->backPic = backPic;
         w->show();
-        emit locked(time,0,nowWork,nextWork);
+        emit locked(time,0,nowWork,nextWork,nowNum,nextNum);
         qDebug()<<nowWork;
     }
     timer->start(1000);

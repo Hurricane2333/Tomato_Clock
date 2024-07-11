@@ -14,14 +14,24 @@ lockScreen::lockScreen(QWidget *parent)
     //事件过滤器
     ui->backGround->installEventFilter(this);
     ui->Timer->installEventFilter(this);
+    ui->nowLbl->installEventFilter(this);
+    ui->nextLbl->installEventFilter(this);
 
     this->setMouseTracking(true);
     ui->backGround->setMouseTracking(true);
     ui->Timer->setMouseTracking(true);
+    ui->nowLbl->setMouseTracking(true);
+    ui->nextLbl->setMouseTracking(true);
 
     this->setFocusPolicy(Qt::StrongFocus);
     ui->backGround->setFocusPolicy(Qt::StrongFocus);
     ui->Timer->setFocusPolicy(Qt::StrongFocus);
+    ui->nowLbl->setFocusPolicy(Qt::StrongFocus);
+    ui->nextLbl->setFocusPolicy(Qt::StrongFocus);
+
+    form.setFamily("Arial"); // 设置字体家族为Arial
+    form.setPointSize(20); // 设置字体大小为20
+    form.setBold(true); // 设置字体加粗
 
 }
 
@@ -65,7 +75,12 @@ void lockScreen::paintEvent(QPaintEvent *event)
 
     ui->backGround->setGeometry(0,0,screenSize.width(),screenSize.height());
     ui->unlockBtn->setGeometry(screenSize.width()-25,10,15,15);
-    ui->Timer->setGeometry(screenSize.width()/2-100,screenSize.height()/2-50,200,100);
+    ui->Timer->setGeometry(screenSize.width()/2-200,screenSize.height()/2-300,400,200);
+    ui->nowLbl->setGeometry(screenSize.width()/2-500,screenSize.height()/2-300,200,200);
+    ui->nextLbl->setGeometry(screenSize.width()/2+300,screenSize.height()/2-300,200,200);
+
+    ui->nowLbl->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+    ui->nextLbl->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
 
 }
 
@@ -100,7 +115,7 @@ void lockScreen::on_unlockBtn_clicked()
     }
 }
 
-void lockScreen::updateTime(QTime time,int num,QString nowWork,QString nextWork)
+void lockScreen::updateTime(QTime time,int num,QString nowWork,QString nextWork,int nowNum,int nextNum)
 {
     ui->Timer->display(time.toString("mm:ss"));
     if(num==2)
@@ -115,6 +130,18 @@ void lockScreen::updateTime(QTime time,int num,QString nowWork,QString nextWork)
     {
         ui->Timer->setStyleSheet ("color:green");
     }
-    ui->currentWorkLbl->setText(nowWork);
-    ui->nextWorkLbl->setText(nextWork);
+
+    ui->nowLbl->setFont(form);
+    ui->nextLbl->setFont(form);
+
+    ui->nowLbl->setText("当前任务：\n"+nowWork+"\n剩余轮次："+QString::number(nowNum));
+    if(nextNum==0)
+    {
+        ui->nextLbl->clear();
+    }
+    else
+    {
+        ui->nextLbl->setText("下一项任务：\n"+nextWork+"\n剩余轮次："+QString::number(nextNum));
+    }
+
 }

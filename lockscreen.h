@@ -24,10 +24,11 @@ public:
     QPixmap backPic;
 
 public slots:
-    void updateTime(QTime time,int num,QString nowWork,QString nextWork);
+    void updateTime(QTime time,int num,QString nowWork,QString nextWork,int nowNum,int nextNum);
 
 private:
     Ui::lockScreen *ui;
+    QFont form;
 
 private slots:
     void on_pushButton_clicked();
