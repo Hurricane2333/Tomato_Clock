@@ -1,5 +1,6 @@
 QT       += core gui
 QT       += sql
+QT       += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,6 +12,7 @@ CONFIG += resources_big
 # DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    history.cpp \
     gift.cpp \
     giftshop.cpp \
     lockscreen.cpp \
@@ -22,6 +24,7 @@ SOURCES += \
     tasksetting.cpp
 
 HEADERS += \
+    history.h \
     gift.h \
     giftshop.h \
     lockscreen.h \
@@ -32,6 +35,7 @@ HEADERS += \
     tasksetting.h
 
 FORMS += \
+    history.ui \
     gift.ui \
     giftshop.ui \
     lockscreen.ui \

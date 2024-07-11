@@ -70,12 +70,21 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug()<<"Error falied to open user"<<basedb.lastError();
     }
 
-    //创建历史任务表，待创建
-
-
-
-
-
+    //创建历史任务表
+    //日期，学习时间，启动计时次数，暂停次数，提前结束次数，创建任务次数，完成任务次数
+    QString hisTable=QString("create table if not exists history"
+                               "(id integer primary key autoincrement,"
+                               "date varchar(20),"
+                               "studyTime int,"
+                               "startNum int,"
+                               "pauseNum int,"
+                               "stopNum int,"
+                               "createNum int,"
+                               "finishNum int);");
+    if(!query.exec(hisTable))
+    {
+        qDebug()<<"Error falied to open history"<<basedb.lastError();
+    }
 
 
     //查询数据库初始化背景
@@ -110,6 +119,13 @@ MainWindow::MainWindow(QWidget *parent)
     //锁屏
     w = new lockScreen;
     connect(this,&MainWindow::locked,w,&lockScreen::updateTime);
+
+    //更新历史记录
+
+    connect(manageWindow->taskWindow, &tasksetting::taskAdded, this, [this]() {
+        updateHistory(0,0,0,0,1,0);
+    });
+
 }
 
 MainWindow::~MainWindow()
@@ -128,6 +144,46 @@ void MainWindow::paintEvent(QPaintEvent *event)
                        //通过计算使图片水平居中                       //图片置于顶端
 }
 */
+
+void MainWindow::clockIn()
+{
+    QDate currentDate = QDate::currentDate();
+    QString date = currentDate.toString("yyyy-MM-dd");
+
+    QSqlQuery query;
+    // 检查数据库中是否存在当前日期的记录
+    QString sql = QString("select * from history where date = '%1'").arg(date);
+    query.exec(sql);
+
+    // 如果没有记录，则插入一条新记录
+    if (!query.next()) {
+        QString Sqlin = QString("INSERT INTO history (date, studyTime, startNum, pauseNum, stopNum, createNum, finishNum)"
+                                " VALUES ('%1', 0, 0, 0, 0, 0, 0)")
+                            .arg(date);
+
+        if(!query.exec(Sqlin))
+        {
+            qDebug()<<"insert error in update history";
+        }
+    }
+}
+
+void MainWindow::updateHistory(int studyTime,int startNum,int pauseNum ,int stopNum ,int createNum ,int finishNum)
+{
+    QDate currentDate = QDate::currentDate();
+    QString date = currentDate.toString("yyyy-MM-dd");
+
+    QSqlQuery query;
+    // 更新数据库中日期为当前日期的数据
+    QString sqlUpdate = QString("update history set"
+                                " studyTime = studyTime + %1, startNum = startNum + %2, pauseNum = pauseNum + %3, stopNum = stopNum + %4, createNum = createNum + %5, finishNum = finishNum + %6"
+                                " where date = '%7'")
+                            .arg(studyTime).arg(startNum).arg(pauseNum).arg(stopNum).arg(createNum).arg(finishNum).arg(date);
+    if(!query.exec(sqlUpdate))
+    {
+        qDebug()<<"update error in update history";
+    };
+}
 
 void MainWindow::changeBackground(QString name)//改变背景图片
 {
@@ -233,10 +289,20 @@ void MainWindow::updateTime()
     time = time.addSecs(-1);
     ui->Timer->display(time.toString("mm:ss"));
 
+    //在秒数为0的学习模式下时，studyTime+1
+    //这样点击stopBtn时会亏损时间
+    if (time.second() == 0&&tomato_num==0)
+    {
+        updateHistory(1, 0, 0, 0, 0, 0);
+    }
+
     emit locked(time,2,nowWork,nextWork,nowNum,nextNum);
     //学习时间与休息时间轮流进行
     if(time.minute() == 0  && time.second() == 0 && tomato_num==1&&turn>0)
     {
+        //闭关模式该学习了
+        if(isLock)
+            w->show();
         //进入学习
         turn--;
         QSqlQuery query;
@@ -245,7 +311,7 @@ void MainWindow::updateTime()
         {
             //更新第一条任务
             int id=query.value("id").toInt();
-            QString sqlUpdate = QString("update task set tuen = %1 where id = %2;")
+            QString sqlUpdate = QString("update task set turn = %1 where id = %2;")
                                     .arg(turn)
                                     .arg(id);
             if(!query.exec(sqlUpdate))
@@ -279,8 +345,10 @@ void MainWindow::updateTime()
 
 void MainWindow::nextTask()
 {
+    updateHistory(0, 0, 0, 0, 0, 1);
     //进行下一项任务
-    timer->stop();
+    if(!isLock)
+        timer->stop();
     QSqlQuery query;
     QString sqlSelect = QString("select * from task;");//查询
     if(query.exec(sqlSelect)&&query.next())
@@ -314,8 +382,12 @@ void MainWindow::subMoney(int tomato)//扣钱
 void MainWindow::on_startBtn_clicked()
 {
     //开始计时
-    if(state==0)
+    if(state==0)//避免重复点击
     {
+        timer->start(1000);
+        //开始次数加1
+        updateHistory(0,1,0,0,0,0);
+
         addMoney(160);
         disconnect(timer, SIGNAL(timeout()), this, SLOT(updateTime()));
         timer->start();
@@ -324,6 +396,7 @@ void MainWindow::on_startBtn_clicked()
     }
     if(isLock)
     {
+        timer->start(1000);
         w = new lockScreen();
         connect(this,&MainWindow::locked,w,&lockScreen::updateTime);
         QPixmap backPic(currentBackground);
@@ -332,12 +405,12 @@ void MainWindow::on_startBtn_clicked()
         emit locked(time,0,nowWork,nextWork,nowNum,nextNum);
         qDebug()<<nowWork;
     }
-    timer->start(1000);
 }
 
 
 void MainWindow::on_pauseBtn_clicked()
-{    
+{
+    updateHistory(0,0,1,0,0,0);
     timer->stop();
     state=0;
 }
@@ -345,9 +418,10 @@ void MainWindow::on_pauseBtn_clicked()
 
 void MainWindow::on_stopBtn_clicked()
 {
+
+    updateHistory(0,0,0,1,0,-1);
     nextTask();
     //进行番茄历史记录和原石操作
-
 
 }
 
@@ -369,5 +443,18 @@ void MainWindow::on_closeBtn_clicked()
     {
         isLock = false;
     }
+}
+
+
+void MainWindow::on_clockBtn_clicked()
+{
+    clockIn();
+}
+
+
+void MainWindow::on_historyBtn_clicked()
+{
+    historyWindow->initChart();
+    historyWindow->show();
 }
 

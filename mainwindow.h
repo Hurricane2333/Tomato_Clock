@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include"history.h"
 #include<QTime>
 #include<QTimer>
 #include"gift.h"
@@ -24,6 +25,8 @@ public:
     ~MainWindow();
     //void paintEvent(QPaintEvent *event)；
     void changeBackground(QString name);
+    void clockIn();
+    void updateHistory(int studyTime,int startNum,int pauseNum ,int stopNum ,int createNum ,int finishNum );//更新当天的history数据表
 
 signals:
     void display(QPixmap pic);
@@ -53,6 +56,10 @@ private slots:
 
     void on_closeBtn_clicked();
 
+    void on_clockBtn_clicked();
+
+    void on_historyBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString currentBackground=":/res/42.png";//背景图片,默认为番茄娘
@@ -78,6 +85,8 @@ private:
     QTimer *timer;
     QTime time;
     QSqlDatabase basedb; // 数据库连接对象
+
+    history* historyWindow=new history;
 
 };
 #endif // MAINWINDOW_H
