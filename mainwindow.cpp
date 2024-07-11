@@ -300,6 +300,9 @@ void MainWindow::updateTime()
     //学习时间与休息时间轮流进行
     if(time.minute() == 0  && time.second() == 0 && tomato_num==1&&turn>0)
     {
+        //闭关模式该学习了
+        if(isLock)
+            w->show();
         //进入学习
         turn--;
         QSqlQuery query;
@@ -308,7 +311,7 @@ void MainWindow::updateTime()
         {
             //更新第一条任务
             int id=query.value("id").toInt();
-            QString sqlUpdate = QString("update task set tuen = %1 where id = %2;")
+            QString sqlUpdate = QString("update task set turn = %1 where id = %2;")
                                     .arg(turn)
                                     .arg(id);
             if(!query.exec(sqlUpdate))
@@ -344,7 +347,8 @@ void MainWindow::nextTask()
 {
     updateHistory(0, 0, 0, 0, 0, 1);
     //进行下一项任务
-    timer->stop();
+    if(!isLock)
+        timer->stop();
     QSqlQuery query;
     QString sqlSelect = QString("select * from task;");//查询
     if(query.exec(sqlSelect)&&query.next())
@@ -378,8 +382,9 @@ void MainWindow::subMoney(int tomato)//扣钱
 void MainWindow::on_startBtn_clicked()
 {
     //开始计时
-    if(state==0)
+    if(state==0)//避免重复点击
     {
+        timer->start(1000);
         //开始次数加1
         updateHistory(0,1,0,0,0,0);
 
@@ -391,6 +396,7 @@ void MainWindow::on_startBtn_clicked()
     }
     if(isLock)
     {
+        timer->start(1000);
         w = new lockScreen();
         connect(this,&MainWindow::locked,w,&lockScreen::updateTime);
         QPixmap backPic(currentBackground);
@@ -399,18 +405,14 @@ void MainWindow::on_startBtn_clicked()
         emit locked(time,0,nowWork,nextWork,nowNum,nextNum);
         qDebug()<<nowWork;
     }
-    timer->start(1000);
 }
 
 
 void MainWindow::on_pauseBtn_clicked()
 {
-    if(state==1)
-    {
     updateHistory(0,0,1,0,0,0);
     timer->stop();
     state=0;
-    }
 }
 
 

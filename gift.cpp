@@ -23,6 +23,16 @@ gift::gift(QWidget *parent)
     , ui(new Ui::gift)
 {
     ui->setupUi(this);
+    init();
+}
+
+gift::~gift()
+{
+    delete ui;
+}
+
+void gift::init()
+{
     // 查询数据库中是否存在user记录,进行初始化
     QSqlQuery query;
     QString curuser="select * from user";
@@ -31,7 +41,7 @@ gift::gift(QWidget *parent)
         money=query.value("money").toInt();
         bigGift=query.value("bigGift").toInt();
         smallGift=query.value("smallGift").toInt();
-    }  
+    }
     else
     {
         // 数据库中不存在money记录，插入一条新记录
@@ -44,12 +54,7 @@ gift::gift(QWidget *parent)
         {
             qDebug() << "Error executing SQL user query";
         }
-    }   
-}
-
-gift::~gift()
-{
-    delete ui;
+    }
 }
 
 void gift::paintEvent(QPaintEvent *event)

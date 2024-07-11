@@ -32,12 +32,13 @@ class gift : public QWidget
 public:
     explicit gift(QWidget *parent = nullptr);
     ~gift();
-    int money;//原石
+    int money=1600;//原石
     giftshop* shopWindow=new giftshop;
 
     void paintEvent(QPaintEvent *event);
     //int getMoney();
     void updateMoney(int nowMoney);
+    void init();
 
 signals:
     void goback();
