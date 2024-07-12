@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     qt6-base-dev \
     qt6-charts-dev \
-    qtmultimedia6-dev \
+    qt6-multimedia-dev \
     libsqlite3-dev \
     && rm -rf /var/lib/apt/lists/*
 
