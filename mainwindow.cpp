@@ -304,6 +304,7 @@ void MainWindow::updateTime()
         if(isLock)
             w->show();
         //进入学习
+        mp.playmusic5();
         turn--;
         QSqlQuery query;
         QString sqlSelect = QString("select * from task;");//查询
@@ -331,6 +332,7 @@ void MainWindow::updateTime()
     if(time.minute() == 0  && time.second() == 0 && tomato_num==0)
     {
         //进入休息
+        mp.playmusic4();
         tomato_num = 1;
         time.setHMS(0,breakTime,0);
 
@@ -393,6 +395,7 @@ void MainWindow::on_startBtn_clicked()
         timer->start();
         connect(timer,SIGNAL(timeout()),this,SLOT(updateTime()));
         state=1;
+        mp.playmusic1();//播放语音1
     }
     if(isLock)
     {
@@ -410,6 +413,8 @@ void MainWindow::on_startBtn_clicked()
 
 void MainWindow::on_pauseBtn_clicked()
 {
+    if(state==1)
+        mp.playmusic2();
     updateHistory(0,0,1,0,0,0);
     timer->stop();
     state=0;
@@ -418,7 +423,7 @@ void MainWindow::on_pauseBtn_clicked()
 
 void MainWindow::on_stopBtn_clicked()
 {
-
+    mp.playmusic3();
     updateHistory(0,0,0,1,0,-1);
     nextTask();
     //进行番茄历史记录和原石操作

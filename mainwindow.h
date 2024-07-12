@@ -9,6 +9,7 @@
 #include"manage.h"
 #include"tasksetting.h"
 #include"lockscreen.h"
+#include"musicplayer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -87,6 +88,8 @@ private:
     QSqlDatabase basedb; // 数据库连接对象
 
     history* historyWindow=new history;
+
+    musicplayer mp;//音乐播放器
 
 };
 #endif // MAINWINDOW_H

@@ -1,7 +1,7 @@
 QT       += core gui
 QT       += sql
 QT       += charts
-
+QT       +=multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -19,6 +19,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     manage.cpp \
+    musicplayer.cpp \
     picbutton.cpp \
     taskform.cpp \
     tasksetting.cpp
@@ -30,6 +31,7 @@ HEADERS += \
     lockscreen.h \
     mainwindow.h \
     manage.h \
+    musicplayer.h \
     picbutton.h \
     taskform.h \
     tasksetting.h
