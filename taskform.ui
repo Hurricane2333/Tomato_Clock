@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>taskForm</class>
+ <widget class="QMainWindow" name="taskForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>881</width>
+    <height>54</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 170, 127);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="namelabel">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>12</y>
+      <width>111</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>19</x>
+      <y>17</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string>任务名</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>17</y>
+      <width>40</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string>等级</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gradelabel">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>12</y>
+      <width>31</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>17</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string>任务时间</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="studylabel">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>12</y>
+      <width>71</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="breaklabel">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>12</y>
+      <width>71</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>17</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string>休息时间</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="deleteBtn">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>7</y>
+      <width>81</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string>删除</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="turnlabel">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>12</y>
+      <width>31</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>17</y>
+      <width>40</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string>轮次</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
