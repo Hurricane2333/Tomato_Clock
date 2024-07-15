@@ -13,11 +13,6 @@ manage::~manage()
     delete ui;
 }
 
-void manage::on_accountBtn_clicked()//账号系统，考虑做不做
-{
-
-}
-
 void manage::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);

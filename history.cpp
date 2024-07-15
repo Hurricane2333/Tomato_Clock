@@ -42,9 +42,9 @@ void history::paintEvent(QPaintEvent *event)
 void history::initChart()
 {
     QFont font;
-    font.setFamily("Arial"); // 设置字体家族为Arial
-    font.setPointSize(14); // 设置字体大小为14
-    font.setBold(true); // 设置字体加粗
+    font.setFamily("Arial"); //设置字体家族为Arial
+    font.setPointSize(14); //设置字体大小为14
+    font.setBold(true); //设置字体加粗
     ui->textEdit->setFont(font);
 
     //查询最后一条记录
@@ -85,7 +85,8 @@ void history::initChart()
     {
         qDebug()<<"select error in history";
     }
-    // 为每一个条形添加数据
+
+    //为每一个条形添加数据
     while(query.next())
     {
         QString date=query.value("date").toString();
@@ -98,21 +99,21 @@ void history::initChart()
 
     QBarSeries* series = new QBarSeries();
     series->append(set0);
-    // 显示数据标签
+    //显示数据标签
     series->setLabelsVisible(true);
 
     chart->addSeries(series);// 将创建好的条形图series添加进chart中
-    chart->setTitle("番茄历史记录");// 设置标题
-    chart->setAnimationOptions(QChart::SeriesAnimations);  // 设置图表变化时的动画效果
+    chart->setTitle("番茄历史记录");//设置标题
+    chart->setAnimationOptions(QChart::SeriesAnimations);  //设置图表变化时的动画效果
 
 
-    series->attachAxis(axisX);// 将axis指定的轴附着到series。
+    series->attachAxis(axisX);//将axis指定的轴附着到series。
     series->attachAxis(axisY);
 
 
-    chart->legend()->setVisible(true);// 设置图例是否可见
-    chart->legend()->setAlignment(Qt::AlignRight); // 设置图例显示的位置
-    ui->chartView->setRenderHint(QPainter::Antialiasing);  // 设置抗锯齿（不过在条形图中不设置也没关系）
+    chart->legend()->setVisible(true);//设置图例是否可见
+    chart->legend()->setAlignment(Qt::AlignRight); //设置图例显示的位置
+    ui->chartView->setRenderHint(QPainter::Antialiasing);  //设置抗锯齿
 
 
 }

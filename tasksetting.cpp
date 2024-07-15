@@ -49,7 +49,7 @@ void tasksetting::on_saveBtn_clicked()//保存按钮
     ui->studyLineEdit->clear();
     ui->breakLineEdit->clear();
     ui->turnLineEdit->clear();
-    this->close(); // 关闭窗口
-    emit taskAdded(); // 发送信号
+    this->close();
+    emit taskAdded();
 }
 

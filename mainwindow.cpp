@@ -151,11 +151,11 @@ void MainWindow::clockIn()
     QString date = currentDate.toString("yyyy-MM-dd");
 
     QSqlQuery query;
-    // 检查数据库中是否存在当前日期的记录
+    //检查数据库中是否存在当前日期的记录
     QString sql = QString("select * from history where date = '%1'").arg(date);
     query.exec(sql);
 
-    // 如果没有记录，则插入一条新记录
+    //如果没有记录，则插入一条新记录
     if (!query.next()) {
 
         addMoney(160);
@@ -177,7 +177,7 @@ void MainWindow::updateHistory(int studyTime,int startNum,int pauseNum ,int stop
     QString date = currentDate.toString("yyyy-MM-dd");
 
     QSqlQuery query;
-    // 更新数据库中日期为当前日期的数据
+    //更新数据库中日期为当前日期的数据
     QString sqlUpdate = QString("update history set"
                                 " studyTime = studyTime + %1, startNum = startNum + %2, pauseNum = pauseNum + %3, stopNum = stopNum + %4, createNum = createNum + %5, finishNum = finishNum + %6"
                                 " where date = '%7'")
@@ -203,20 +203,20 @@ void MainWindow::changeBackground(QString name)//改变背景图片
     currentBackground = name;
     QPixmap pixmap(name);
     QPixmap scaledPixmap = pixmap.scaled(this->size(),Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-    // 创建一个目标设备，用于绘制背景图片
+    //创建一个目标设备，用于绘制背景图片
     QPixmap target(scaledPixmap.size());
     target.fill(Qt::white); // 设置目标设备为白色
 
-    // 创建一个QPainter对象，用于在目标设备上绘制
+    //创建一个QPainter对象，用于在目标设备上绘制
     QPainter painter(&target);
     painter.setOpacity(0.8); //设置透明度
-    // 在目标设备上绘制背景图片
+    //在目标设备上绘制背景图片
     painter.drawPixmap((this->size().width()-scaledPixmap.width())/2, 0, scaledPixmap);//水平居中
 
-    // 创建一个QPalette对象，并将具有透明度的背景图片分配给窗口背景色
+    //创建一个QPalette对象，并将具有透明度的背景图片分配给窗口背景色
     QPalette palette;
     palette.setBrush(QPalette::Window, QBrush(target));
-    // 将QPalette应用于MainWindow窗口
+    //将QPalette应用于MainWindow窗口
     this->setPalette(palette);
 }
 
@@ -237,9 +237,9 @@ void MainWindow::InitTime()
         turn=query.value("turn").toInt();
 
         QFont font;
-        font.setFamily("Arial"); // 设置字体家族为Arial
-        font.setPointSize(14); // 设置字体大小为14
-        font.setBold(true); // 设置字体加粗
+        font.setFamily("Arial"); //设置字体家族为Arial
+        font.setPointSize(14); //设置字体大小为14
+        font.setBold(true); //设置字体加粗
 
         nowWork = query.value("name").toString();
         nowNum = turn;
@@ -262,7 +262,7 @@ void MainWindow::InitTime()
     }
     else
     {
-        // 数据库中不存在task记录，插入一条新记录
+        //数据库中不存在task记录，插入一条新记录
         QString sqlIn = QString("insert into task (name, grade, studyTime, breakTime,turn) "
                                 "values ('%1', %2, %3, %4, %5);")
                             .arg("默认任务")

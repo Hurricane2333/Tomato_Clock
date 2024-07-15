@@ -33,7 +33,7 @@ gift::~gift()
 
 void gift::init()
 {
-    // 查询数据库中是否存在user记录,进行初始化
+    //查询数据库中是否存在user记录,进行初始化
     QSqlQuery query;
     QString curuser="select * from user";
     if (query.exec(curuser)&&query.next())
@@ -44,7 +44,7 @@ void gift::init()
     }
     else
     {
-        // 数据库中不存在money记录，插入一条新记录
+        //数据库中不存在money记录，插入一条新记录
         QString sqlIn = QString("insert into user (money,bigGift,smallGift) "
                                 "values (%1,%2,%3);")
                             .arg(1600)
@@ -64,7 +64,7 @@ void gift::paintEvent(QPaintEvent *event)
     painter.drawPixmap(1070,40,51,51,QPixmap(":/res/yuans.png"));
 }
 
-int gift::isLucky( )
+int gift::isLucky( )//抽卡概率函数
 {
     money-=160;
     int luckyNum=QRandomGenerator::global()->bounded(1,10000);
@@ -90,62 +90,65 @@ int gift::isLucky( )
     return 3;
 }
 
-void gift::showImage(int num)//展示抽卡图片
+void gift::showImage(int count)//展示抽卡图片
 {
-    // 创建一个QPixmap从文件路径加载图片
-    QString filePath;
-    int luckyNum=QRandomGenerator::global()->bounded(0,100);
-    switch(num) {
-    case 1:
-        filePath = ":/res/00"+QString::number(luckyNum%3+1)+".png"; //
-        break;
-    case 2:
-        filePath = ":/res/0"+QString::number(luckyNum%16+1)+".png"; //
-        break;
-    case 3:
-        filePath = ":/res/"+QString::number(luckyNum%69+1)+".png"; //
-        break;
-    }
+    vector<QString> arr;
 
-    //向数据库插入抽卡结果
-    QSqlQuery query;
-    QString sqlIn = QString("insert into gift (name) "
-                            "values ('%1');")
-                        .arg(filePath);
-    if (!query.exec(sqlIn))
+    for(int i=0;i<count;i++)
     {
-        qDebug() << "Error executing SQL gift query";
+        int num=isLucky();
+        //创建一个QPixmap从文件路径加载图片
+        QString filePath;
+        int luckyNum=QRandomGenerator::global()->bounded(0,100);
+        switch(num)
+        {
+        case 1:
+            filePath = ":/res/00"+QString::number(luckyNum%3+1)+".png"; //
+        break;
+        case 2:
+            filePath = ":/res/0"+QString::number(luckyNum%16+1)+".png"; //
+        break;
+        case 3:
+            filePath = ":/res/"+QString::number(luckyNum%69+1)+".png"; //
+        break;
+        }
+
+        //向数据库插入抽卡结果
+        QSqlQuery query;
+        QString sqlIn = QString("insert into gift (name) "
+                            "values ('%1');")
+                            .arg(filePath);
+
+        if (!query.exec(sqlIn))
+        {
+            qDebug() << "Error executing SQL gift query";
+        }
+
+        arr.push_back(filePath);
     }
 
-    // 创建一个新的 picbutton 对象并设置图片
-    picbutton *btn_picb=new picbutton(filePath,1260,707);
-    btn_picb->setParent(this);
+    //反序输出
+    for(int i=count-1;i>=0;i--)
+    {
+        //创建一个新的picbutton
+        picbutton *btn_picb=new picbutton(arr[i],1260,707);
+        btn_picb->setParent(this);
+        btn_picb->show();
+        connect(btn_picb, &picbutton::clicked,btn_picb, &picbutton::hide);
+    }
 
-    // 设置图片的初始位置和大小
-    btn_picb->move(this->width()/2 - btn_picb->width()/2, this->height()/2 - btn_picb->height()/2);
-    btn_picb->show();
 
-    // 连接信号和槽函数
-    connect(btn_picb, &picbutton::clicked, btn_picb, &picbutton::hide);
 }
 
 void gift::on_Button1_clicked()//单抽
 {
     if(money<160)
     {
-        qInfo()<<"您的原石不够了喵";
-        QDialog *dialog = new QDialog(this);
-        QTextEdit *textEdit = new QTextEdit(dialog);
-        textEdit->append("您的原石不够了喵");
-        // 设置对话框的布局
-        QVBoxLayout *layout = new QVBoxLayout(dialog);
-        layout->addWidget(textEdit);
-        // 显示对话框
-        dialog->setLayout(layout);
-        dialog->exec();
+        QString message = "您的原石不够了喵";
+        QMessageBox::information(this,"快去获取原石吧", message);
         return;
     }
-    showImage(isLucky());
+    showImage(1);
 }
 
 
@@ -153,39 +156,25 @@ void gift::on_Button10_clicked()//十连
 {
     if(money<1600)
     {
-        qInfo()<<"您的原石不够了喵";
-        QDialog *dialog = new QDialog(this);
-        QTextEdit *textEdit = new QTextEdit(dialog);
-        textEdit->append("您的原石不够了喵");
-        // 设置对话框的布局
-        QVBoxLayout *layout = new QVBoxLayout(dialog);
-        layout->addWidget(textEdit);
-        // 显示对话框
-        dialog->setLayout(layout);
-        dialog->exec();
+        QString message = "您的原石不够了喵";
+        QMessageBox::information(this,"快去获取原石吧", message);
         return;
     }
-    for(int i=0;i<10;i++)
-        showImage(isLucky());
+    showImage(10);
 }
 
 
 
 void gift::on_giftButton_clicked()//奖励记录
 {
-    // 隐藏所有图片
-    for (auto btn : this->findChildren<picbutton*>()) {
-        btn->hide();
-    }
-
-    // 创建一个新的窗口来显示历史抽卡记录
+    //创建一个新的窗口来显示历史抽卡记录
     QDialog *dialog = new QDialog(this);
-    dialog->setWindowTitle("历史抽卡记录");
+    dialog->setWindowTitle("最多剩余"+QString::number(80-bigGift)+"抽出金");
 
-    // 创建一个文本编辑器来显示历史记录
+    //创建一个文本编辑器来显示历史记录
     QTextEdit *textEdit = new QTextEdit(dialog);
 
-    // 设置文本编辑器的字体
+    //设置文本编辑器的字体
     QFont font = textEdit->font();
     font.setPointSize(12);
     textEdit->setFont(font);
@@ -199,14 +188,30 @@ void gift::on_giftButton_clicked()//奖励记录
     while(query.next())
     {
         QString name=query.value("name").toString();
-        textEdit->append(name);
+        QString style;
+
+        if(name[6]=='0'&&name[7]=='0')
+        {
+            style="<span style=\"color: gold;\">出金</span>";
+        }
+        if(name[6]=='0'&&name[7]!='0')
+        {
+            style="<span style=\"color: purple;\">出紫</span>";
+        }
+        if(name[6]!='0')
+        {
+            style="<span style=\"color: blue;\">出蓝</span>";
+        }
+
+        textEdit->setAlignment(Qt::AlignCenter);//居中
+        textEdit->append(style);
     }
 
-    // 设置对话框的布局
+    //设置对话框的布局
     QVBoxLayout *layout = new QVBoxLayout(dialog);
     layout->addWidget(textEdit);
 
-    // 显示对话框
+    //显示对话框
     dialog->setLayout(layout);
     dialog->exec();
 }
