@@ -20,7 +20,7 @@ history::history(QWidget *parent)
     chart->addAxis(axisY, Qt::AlignLeft);
     axisX->setTitleText("日期");// 设置X轴标题
     axisY->setRange(0, 24);// 设置Y轴范围
-    axisY->setTitleText("学习时间");// 设置Y轴标题
+    axisY->setTitleText("学习时间/30min");// 设置Y轴标题
 
 }
 
