@@ -5,6 +5,7 @@ manage::manage( QWidget *parent) : QWidget(parent)
     , ui(new Ui::manage)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
     connect(taskWindow, &tasksetting::taskAdded, this, &manage::updateWindow);
 }
 

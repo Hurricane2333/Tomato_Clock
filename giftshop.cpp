@@ -14,6 +14,7 @@ giftshop::giftshop(QWidget *parent)
     , ui(new Ui::giftshop)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
 
     updateShop();
 }

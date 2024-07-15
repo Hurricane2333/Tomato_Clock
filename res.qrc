@@ -96,5 +96,7 @@
         <file>res/music/k96m1mywyutcsts5349cnbfynihhtv3.mp3</file>
         <file>res/music/mn3ctk67mp0ibxteiemxqaei3dnxk77.mp3</file>
         <file>res/yuans.png</file>
+        <file>res/tomato.png</file>
+        <file>res/tomato.ico</file>
     </qresource>
 </RCC>

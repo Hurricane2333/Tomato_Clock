@@ -7,6 +7,7 @@ tasksetting::tasksetting(QWidget *parent)
     , ui(new Ui::tasksetting)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
 }
 
 tasksetting::~tasksetting()

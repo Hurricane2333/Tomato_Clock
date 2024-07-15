@@ -14,6 +14,7 @@ history::history(QWidget *parent)
     , ui(new Ui::history)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
     QChart* chart = ui->chartView->chart();
     //添加x轴和y轴
     chart->addAxis(axisX, Qt::AlignBottom);

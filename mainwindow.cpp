@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     //初始化番茄钟
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
     timer = new QTimer;
     ui->Timer->setDigitCount(5);
     ui->Timer->setLineWidth(0);
@@ -407,7 +408,7 @@ void MainWindow::on_startBtn_clicked()
         state=1;
         mp.playmusic1();//播放语音1
     }
-    if(isLock)
+    if(isLock&&tomato_num==0)
     {
         timer->start(1000);
         w = new lockScreen();
@@ -416,7 +417,6 @@ void MainWindow::on_startBtn_clicked()
         w->backPic = backPic;
         w->show();
         emit locked(time,0,nowWork,nextWork,nowNum,nextNum);
-        qDebug()<<nowWork;
     }
 }
 

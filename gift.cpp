@@ -23,6 +23,7 @@ gift::gift(QWidget *parent)
     , ui(new Ui::gift)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
     init();
 }
 
