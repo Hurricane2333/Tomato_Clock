@@ -6,6 +6,7 @@ lockScreen::lockScreen(QWidget *parent)
     , ui(new Ui::lockScreen)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
 
     //全屏
     this->setWindowFlags(Qt::Window);

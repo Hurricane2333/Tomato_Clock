@@ -1,7 +1,7 @@
 QT       += core gui
 QT       += sql
 QT       += charts
-QT       +=multimedia
+QT       += multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -53,3 +53,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res.qrc
+
+RC_FILE += \
+    tomato.rc

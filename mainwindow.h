@@ -61,6 +61,7 @@ private slots:
 
     void on_historyBtn_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     QString currentBackground=":/res/42.png";//背景图片,默认为番茄娘

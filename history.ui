@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>731</width>
+      <width>861</width>
       <height>651</height>
      </rect>
     </property>
@@ -27,20 +27,20 @@
    <widget class="QCalendarWidget" name="calendarWidget">
     <property name="geometry">
      <rect>
-      <x>790</x>
-      <y>330</y>
-      <width>421</width>
-      <height>281</height>
+      <x>920</x>
+      <y>350</y>
+      <width>311</width>
+      <height>261</height>
      </rect>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>930</x>
       <y>40</y>
-      <width>321</width>
-      <height>201</height>
+      <width>291</width>
+      <height>211</height>
      </rect>
     </property>
    </widget>

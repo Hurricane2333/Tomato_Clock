@@ -93,7 +93,10 @@
         <file>res/music/cd45sfm1jl8katsi68th5gsh2r2w4vm.mp3</file>
         <file>res/music/fm2otnsxjo5he9bokl45qgg5zv3o7m8.mp3</file>
         <file>res/music/hjsc5kenf9bn4u5wzxvnllq83bgohbg.mp3</file>
-        <file>res/music/mn3ctk67mp0ibxteiemxqaei3dnxk77.mp3</file>
         <file>res/music/k96m1mywyutcsts5349cnbfynihhtv3.mp3</file>
+        <file>res/music/mn3ctk67mp0ibxteiemxqaei3dnxk77.mp3</file>
+        <file>res/yuans.png</file>
+        <file>res/tomato.png</file>
+        <file>res/tomato.ico</file>
     </qresource>
 </RCC>

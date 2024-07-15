@@ -25,7 +25,6 @@ signals:
     void saved();
 
 private slots:
-    void on_accountBtn_clicked();
 
     void on_addTaskBtn_clicked();
 

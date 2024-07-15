@@ -6,6 +6,7 @@ taskForm::taskForm(QWidget *parent)
     , ui(new Ui::taskForm)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
 }
 
 taskForm::~taskForm()

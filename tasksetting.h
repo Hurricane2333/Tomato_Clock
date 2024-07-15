@@ -19,6 +19,7 @@ class tasksetting : public QWidget
 public:
     explicit tasksetting(QWidget *parent = nullptr);
     ~tasksetting();
+    void paintEvent(QPaintEvent *event);
 
 signals:
     void taskAdded();

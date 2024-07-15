@@ -15,16 +15,6 @@ namespace Ui {
 class gift;
 }
 
-struct History
-{
-    int num;//奖励类型
-    string result;
-    History(int num,string result)
-        :num(num),result(result){}
-    History()
-        :num(0),result(""){}
-};
-
 class gift : public QWidget
 {
     Q_OBJECT
@@ -58,10 +48,8 @@ private slots:
 private:
     int bigGift;//出金抽数
     int smallGift;//出紫抽数
-    vector<History>history;
     int isLucky();//是否抽中：1出金，2出紫，3出蓝
-    void luckyTry();//单抽
-    void showImage(int num);//抽卡图片
+    void showImage(int num);//抽卡
     Ui::gift *ui;
 };
 

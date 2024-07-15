@@ -21,13 +21,14 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>10</y>
+      <y>12</y>
       <width>111</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string/>
@@ -36,11 +37,14 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>40</width>
-      <height>12</height>
+      <x>19</x>
+      <y>17</y>
+      <width>50</width>
+      <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string>任务名</string>
@@ -49,11 +53,14 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>20</y>
+      <x>220</x>
+      <y>17</y>
       <width>40</width>
-      <height>12</height>
+      <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string>等级</string>
@@ -62,14 +69,15 @@
    <widget class="QLabel" name="gradelabel">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>10</y>
+      <x>260</x>
+      <y>12</y>
       <width>31</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string/>
@@ -78,11 +86,14 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>20</y>
-      <width>51</width>
-      <height>16</height>
+      <x>310</x>
+      <y>17</y>
+      <width>70</width>
+      <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string>任务时间</string>
@@ -91,14 +102,15 @@
    <widget class="QLabel" name="studylabel">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>10</y>
+      <x>390</x>
+      <y>12</y>
       <width>71</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string/>
@@ -107,14 +119,15 @@
    <widget class="QLabel" name="breaklabel">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>10</y>
+      <x>570</x>
+      <y>12</y>
       <width>71</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string/>
@@ -123,11 +136,14 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>20</y>
-      <width>51</width>
-      <height>16</height>
+      <x>480</x>
+      <y>17</y>
+      <width>70</width>
+      <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string>休息时间</string>
@@ -137,13 +153,14 @@
     <property name="geometry">
      <rect>
       <x>780</x>
-      <y>10</y>
+      <y>7</y>
       <width>81</width>
-      <height>41</height>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(0, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string>删除</string>
@@ -153,13 +170,14 @@
     <property name="geometry">
      <rect>
       <x>710</x>
-      <y>10</y>
+      <y>12</y>
       <width>31</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string/>
@@ -169,10 +187,13 @@
     <property name="geometry">
      <rect>
       <x>670</x>
-      <y>20</y>
+      <y>17</y>
       <width>40</width>
-      <height>12</height>
+      <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 12pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
      <string>轮次</string>

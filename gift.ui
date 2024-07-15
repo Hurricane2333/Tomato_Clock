@@ -31,11 +31,14 @@
   <widget class="QPushButton" name="giftButton">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>630</y>
-     <width>81</width>
-     <height>41</height>
+     <x>60</x>
+     <y>620</y>
+     <width>101</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 900 14pt &quot;Arial&quot;;</string>
    </property>
    <property name="text">
     <string>奖励详情</string>
@@ -44,27 +47,33 @@
   <widget class="QPushButton" name="Button1">
    <property name="geometry">
     <rect>
-     <x>990</x>
-     <y>630</y>
-     <width>91</width>
-     <height>41</height>
+     <x>820</x>
+     <y>620</y>
+     <width>151</width>
+     <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 900 14pt &quot;Arial&quot;;</string>
+   </property>
    <property name="text">
-    <string>奖励1次</string>
+    <string>奖励一次</string>
    </property>
   </widget>
   <widget class="QPushButton" name="Button10">
    <property name="geometry">
     <rect>
-     <x>1120</x>
-     <y>630</y>
-     <width>81</width>
-     <height>41</height>
+     <x>1060</x>
+     <y>620</y>
+     <width>151</width>
+     <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 900 14pt &quot;Arial&quot;;</string>
+   </property>
    <property name="text">
-    <string>奖励10次</string>
+    <string>奖励十次</string>
    </property>
   </widget>
   <widget class="QPushButton" name="getButton">
@@ -72,22 +81,15 @@
     <rect>
      <x>930</x>
      <y>40</y>
-     <width>91</width>
-     <height>41</height>
+     <width>101</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 900 14pt &quot;Arial&quot;;</string>
    </property>
    <property name="text">
     <string>获取抽数</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>1090</x>
-     <y>40</y>
-     <width>111</width>
-     <height>41</height>
-    </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="setButton">
@@ -95,12 +97,32 @@
     <rect>
      <x>780</x>
      <y>40</y>
-     <width>81</width>
-     <height>41</height>
+     <width>101</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 900 14pt &quot;Arial&quot;;</string>
    </property>
    <property name="text">
     <string>皮肤设置</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>1120</x>
+     <y>40</y>
+     <width>81</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+font: 900 12pt &quot;Arial&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

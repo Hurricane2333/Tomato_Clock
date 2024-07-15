@@ -5,17 +5,13 @@ manage::manage( QWidget *parent) : QWidget(parent)
     , ui(new Ui::manage)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
     connect(taskWindow, &tasksetting::taskAdded, this, &manage::updateWindow);
 }
 
 manage::~manage()
 {
     delete ui;
-}
-
-void manage::on_accountBtn_clicked()//账号系统，考虑做不做
-{
-
 }
 
 void manage::paintEvent(QPaintEvent *event)

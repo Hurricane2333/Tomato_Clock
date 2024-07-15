@@ -1,16 +1,28 @@
 #include "tasksetting.h"
 #include "ui_tasksetting.h"
+#include<QPainter>
 
 tasksetting::tasksetting(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::tasksetting)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/res/tomato.png"));
 }
 
 tasksetting::~tasksetting()
 {
     delete ui;
+}
+
+void tasksetting::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
+    painter.setOpacity(0.2);
+    QPixmap backPic(":/res/42.png");
+    QPixmap scaledPixmap = backPic.scaled(this->size(),Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+    painter.drawPixmap((this->size().width()-scaledPixmap.width())/2, 0 ,scaledPixmap);
+        //通过计算使图片水平居中                       //图片置于顶端
 }
 
 void tasksetting::on_saveBtn_clicked()//保存按钮
@@ -33,7 +45,12 @@ void tasksetting::on_saveBtn_clicked()//保存按钮
     {
         qDebug() << "Error executing SQL query: " << query.lastError();
     }
-    this->close(); // 关闭窗口
-    emit taskAdded(); // 发送信号
+    ui->nameLineEdit->clear();
+    ui->gradeLineEdit->clear();
+    ui->studyLineEdit->clear();
+    ui->breakLineEdit->clear();
+    ui->turnLineEdit->clear();
+    this->close();
+    emit taskAdded();
 }
 

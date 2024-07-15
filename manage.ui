@@ -35,27 +35,17 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="accountBtn">
-   <property name="geometry">
-    <rect>
-     <x>1130</x>
-     <y>10</y>
-     <width>91</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>账号</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="addTaskBtn">
    <property name="geometry">
     <rect>
      <x>1040</x>
      <y>180</y>
-     <width>91</width>
-     <height>41</height>
+     <width>101</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 900 14pt &quot;Arial&quot;;</string>
    </property>
    <property name="text">
     <string>添加任务</string>
@@ -66,9 +56,12 @@
     <rect>
      <x>1040</x>
      <y>360</y>
-     <width>91</width>
-     <height>41</height>
+     <width>101</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 900 14pt &quot;Arial&quot;;</string>
    </property>
    <property name="text">
     <string>保存</string>
